@@ -1,0 +1,19 @@
+{
+  "name": "projeto-eli-chapadao",
+  "version": "1.0.0",
+  "description": "Calculadora Científica & Relógio Analógico de Luxo para Eli com tema Glam e Ariana Grande",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "calculator",
+    "scientific",
+    "analog-clock",
+    "glam",
+    "pink",
+    "ariana-grande"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}

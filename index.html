@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Eli 🌸 | Calculadora Científica & Timepiece Glam</title>
+  <meta name="description" content="Calculadora científica elegante com relógio analógico de luxo, estética glamourosa rosa e homenagem a Eli & Ariana Grande.">
+  <meta name="theme-color" content="#ff4081">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Eli 🌸">
+  <link rel="icon" type="image/jpeg" href="assets/ariana.jpg">
+  <link rel="apple-touch-icon" href="assets/ariana.jpg">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="sweetener">
+  <!-- Interactive Floating Petals Background Canvas -->
+  <canvas id="petals-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Glow Background Blobs -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div class="app-wrapper">
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-signature" id="brand-eli">
+        <div class="signature-icon-wrap">
+          <span class="flower-icon">🌸</span>
+          <span class="sparkle sparkle-1">✨</span>
+          <span class="sparkle sparkle-2">💖</span>
+        </div>
+        <div class="signature-text-group">
+          <h1 class="brand-name">Eli <span class="brand-flower">🌸</span></h1>
+          <p class="brand-subtext">Scientific Diva & Haute Horlogerie</p>
+        </div>
+      </div>
+
+      <!-- Action Badges / Controls -->
+      <div class="header-controls">
+        <!-- Sound Effect Toggle -->
+        <button id="btn-toggle-sound" class="header-pill-btn active" title="Alternar Efeitos Sonoros" aria-label="Efeitos Sonoros">
+          <i class="fa-solid fa-volume-high" id="sound-icon"></i>
+          <span class="btn-label">Som: ON</span>
+        </button>
+
+        <!-- Petals Toggle -->
+        <button id="btn-toggle-petals" class="header-pill-btn active" title="Alternar Chuva de Pétalas" aria-label="Pétalas">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          <span class="btn-label">Pétalas</span>
+        </button>
+
+        <!-- Theme Selector Dropdown / Cycle -->
+        <div class="theme-selector-wrap">
+          <button id="btn-cycle-theme" class="header-pill-btn theme-btn" title="Mudar Paleta de Cores" aria-label="Trocar Tema">
+            <i class="fa-solid fa-palette"></i>
+            <span id="theme-name-display">Sweetener Pink</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Segmented Navigation Tabs (Smartphones & Tablets) -->
+    <nav class="mobile-nav-bar" id="mobile-nav-bar" aria-label="Navegação móvel">
+      <button class="mobile-nav-btn active" data-tab="calculator" id="tab-btn-calc">
+        <i class="fa-solid fa-calculator"></i>
+        <span>Calculadora</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="timepiece" id="tab-btn-timepiece">
+        <i class="fa-regular fa-clock"></i>
+        <span>Relógio & Diva</span>
+      </button>
+      <button class="mobile-nav-btn" data-tab="history" id="tab-btn-history">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>Histórico</span>
+      </button>
+    </nav>
+
+    <!-- Main Content Container: 3-column / 2-column responsive layout -->
+    <main class="main-dashboard" id="main-dashboard" data-active-tab="calculator">
+      
+      <!-- LEFT COLUMN: Ariana Grande Card + Analog Luxury Clock -->
+      <aside class="side-column side-glam">
+        
+        <!-- ARIANA GRANDE FEATURE CARD -->
+        <section class="glam-card ariana-card" id="ariana-section">
+          <div class="card-glass-shine"></div>
+          
+          <div class="ariana-photo-container">
+            <div class="photo-frame">
+              <img src="assets/ariana.jpg" alt="Ariana Grande Glamour" class="ariana-img" id="ariana-photo">
+              <div class="photo-overlay-gradient"></div>
+              <span class="glam-tag"><i class="fa-solid fa-gem"></i> Diva Edition</span>
+            </div>
+          </div>
+
+          <div class="ariana-details">
+            <div class="ariana-title-row">
+              <h2 class="ariana-heading">Ariana Grande</h2>
+              <span class="verified-badge" title="Verified Queen"><i class="fa-solid fa-circle-check"></i></span>
+            </div>
+            
+            <p class="ariana-quote" id="ariana-quote-text">"I want it, I got it... agora vamos calcular! 💅✨"</p>
+            
+            <div class="ariana-interactive-bar">
+              <button id="btn-ariana-vibe" class="vibe-btn" title="Nova frase inspiradora!">
+                <i class="fa-solid fa-sparkles"></i> Mudar Vibe ✨
+              </button>
+              <div class="music-bars" id="music-bars" title="Positions / 7 Rings Vibes">
+                <span class="bar bar-1"></span>
+                <span class="bar bar-2"></span>
+                <span class="bar bar-3"></span>
+                <span class="bar bar-4"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- LUXURY ANALOG CLOCK CARD -->
+        <section class="glam-card clock-card" id="clock-section">
+          <div class="card-glass-shine"></div>
+          
+          <div class="clock-card-header">
+            <div class="clock-title-badge">
+              <i class="fa-regular fa-clock"></i>
+              <span>Relógio Analógico</span>
+            </div>
+            <span class="eli-hallmark">Eli Horloger 🌸</span>
+          </div>
+
+          <!-- Canvas Analog Clock -->
+          <div class="clock-visual-wrap">
+            <div class="clock-glow-halo"></div>
+            <canvas id="analog-clock-canvas" width="280" height="280" aria-label="Relógio analógico ao vivo"></canvas>
+          </div>
+
+          <!-- Digital Time & Calendar Info -->
+          <div class="clock-digital-footer">
+            <div class="digital-time-display" id="clock-digital-time">00:00:00</div>
+            <div class="digital-date-display" id="clock-digital-date">Carregando data...</div>
+          </div>
+        </section>
+
+      </aside>
+
+      <!-- CENTER / MAIN COLUMN: The Complete Scientific Calculator -->
+      <section class="calculator-column">
+        <div class="glam-card calc-main-card">
+          <div class="card-glass-shine"></div>
+
+          <!-- Screen / Display Area -->
+          <div class="calc-screen-box">
+            <!-- Top Status Row -->
+            <div class="calc-screen-header">
+              <div class="screen-badges">
+                <button id="btn-toggle-rad" class="calc-mode-pill" title="Alternar entre Graus e Radianos">
+                  <span id="angle-mode-badge" class="badge-text">DEG</span>
+                </button>
+                <span id="badge-2nd" class="calc-mode-pill inactive">2nd</span>
+                <span id="badge-hyp" class="calc-mode-pill inactive">HYP</span>
+                <span id="badge-memory" class="calc-mode-pill inactive">M</span>
+              </div>
+              <div class="screen-signature">
+                <span class="subtle-eli">Eli 🌸 Scientific</span>
+              </div>
+            </div>
+
+            <!-- Formula / Expression line -->
+            <div class="calc-expression-row" id="calc-expression-row" title="Expressão atual">
+              <span id="calc-expression" class="calc-expression">0</span>
+            </div>
+
+            <!-- Main Big Result line -->
+            <div class="calc-result-row">
+              <span id="calc-result" class="calc-result" tabindex="0">0</span>
+              <button id="btn-copy-result" class="btn-screen-action" title="Copiar resultado" aria-label="Copiar resultado">
+                <i class="fa-regular fa-copy"></i>
+                <span class="copy-tooltip" id="copy-tooltip">Copiado! 💖</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Mode & Memory Ribbon -->
+          <div class="memory-ribbon">
+            <button class="mem-btn" data-action="mc" id="btn-mc" title="Memory Clear">MC</button>
+            <button class="mem-btn" data-action="mr" id="btn-mr" title="Memory Recall">MR</button>
+            <button class="mem-btn" data-action="m+" id="btn-mplus" title="Memory Add">M+</button>
+            <button class="mem-btn" data-action="m-" id="btn-mminus" title="Memory Subtract">M-</button>
+            <button class="mem-btn" data-action="ms" id="btn-ms" title="Memory Store">MS</button>
+            <button class="mem-btn" data-action="ans" id="btn-ans" title="Último Resultado (Ans)">Ans</button>
+            <button class="mem-btn highlight-btn" id="btn-toggle-sci-drawer" title="Modo Científico Expandido">
+              <i class="fa-solid fa-sliders"></i> <span class="hide-mobile">Funções</span>
+            </button>
+          </div>
+
+          <!-- Scientific & Standard Keypad Matrix -->
+          <div class="calc-keyboard" id="calc-keyboard">
+            
+            <!-- Scientific Section (Trigonometry, Log, Powers, Constants) -->
+            <div class="keypad-scientific-grid" id="scientific-grid">
+              <!-- Row 1 -->
+              <button class="calc-key key-func" data-action="2nd" id="btn-2nd" title="Segunda Função (Inversas)">2nd</button>
+              <button class="calc-key key-func" data-action="hyp" id="btn-hyp" title="Funções Hiperbólicas">hyp</button>
+              <button class="calc-key key-trig" data-action="sin" id="btn-sin">sin</button>
+              <button class="calc-key key-trig" data-action="cos" id="btn-cos">cos</button>
+              <button class="calc-key key-trig" data-action="tan" id="btn-tan">tan</button>
+              
+              <!-- Row 2 -->
+              <button class="calc-key key-func" data-action="pi" id="btn-pi" title="Pi (3.1415...)">π</button>
+              <button class="calc-key key-func" data-action="e" id="btn-e" title="Euler (2.7182...)">e</button>
+              <button class="calc-key key-func" data-action="ln" id="btn-ln" title="Logaritmo Natural">ln</button>
+              <button class="calc-key key-func" data-action="log" id="btn-log" title="Logaritmo Base 10">log</button>
+              <button class="calc-key key-func" data-action="inv-x" id="btn-inv-x" title="Inverso (1/x)">1/x</button>
+              
+              <!-- Row 3 -->
+              <button class="calc-key key-func" data-action="sqr" id="btn-sqr" title="Ao Quadrado (x²)">x²</button>
+              <button class="calc-key key-func" data-action="pow" id="btn-pow" title="Potência (xʸ)">xʸ</button>
+              <button class="calc-key key-func" data-action="sqrt" id="btn-sqrt" title="Raiz Quadrada (√x)">√x</button>
+              <button class="calc-key key-func" data-action="cbrt" id="btn-cbrt" title="Raiz Cúbica (³√x)">³√x</button>
+              <button class="calc-key key-func" data-action="fact" id="btn-fact" title="Fatorial (x!)">x!</button>
+
+              <!-- Row 4 -->
+              <button class="calc-key key-func" data-action="open-paren" id="btn-paren-open" title="Abre Parêntese">(</button>
+              <button class="calc-key key-func" data-action="close-paren" id="btn-paren-close" title="Fecha Parêntese">)</button>
+              <button class="calc-key key-func" data-action="pct" id="btn-pct" title="Porcentagem">%</button>
+              <button class="calc-key key-func" data-action="abs" id="btn-abs" title="Valor Absoluto |x|">|x|</button>
+              <button class="calc-key key-func" data-action="rand" id="btn-rand" title="Número Aleatório (0 a 1)">rnd</button>
+            </div>
+
+            <!-- Standard Numbers & Operators Keypad -->
+            <div class="keypad-standard-grid">
+              <!-- Row 1 -->
+              <button class="calc-key key-clear" data-action="clear-all" id="btn-clear" title="Limpar Tudo (Escape)">AC</button>
+              <button class="calc-key key-del" data-action="backspace" id="btn-del" title="Apagar Último Dígito (Backspace)"><i class="fa-solid fa-delete-left"></i></button>
+              <button class="calc-key key-func" data-action="negate" id="btn-negate" title="Inverter Sinal">±</button>
+              <button class="calc-key key-op" data-action="op" data-val="/" id="btn-div" title="Divisão">÷</button>
+
+              <!-- Row 2 -->
+              <button class="calc-key key-num" data-val="7" id="btn-7">7</button>
+              <button class="calc-key key-num" data-val="8" id="btn-8">8</button>
+              <button class="calc-key key-num" data-val="9" id="btn-9">9</button>
+              <button class="calc-key key-op" data-action="op" data-val="*" id="btn-mul" title="Multiplicação">×</button>
+
+              <!-- Row 3 -->
+              <button class="calc-key key-num" data-val="4" id="btn-4">4</button>
+              <button class="calc-key key-num" data-val="5" id="btn-5">5</button>
+              <button class="calc-key key-num" data-val="6" id="btn-6">6</button>
+              <button class="calc-key key-op" data-action="op" data-val="-" id="btn-sub" title="Subtração">−</button>
+
+              <!-- Row 4 -->
+              <button class="calc-key key-num" data-val="1" id="btn-1">1</button>
+              <button class="calc-key key-num" data-val="2" id="btn-2">2</button>
+              <button class="calc-key key-num" data-val="3" id="btn-3">3</button>
+              <button class="calc-key key-op" data-action="op" data-val="+" id="btn-add" title="Adição">+</button>
+
+              <!-- Row 5 -->
+              <button class="calc-key key-num key-zero" data-val="0" id="btn-0">0</button>
+              <button class="calc-key key-num" data-val="." id="btn-dot">.</button>
+              <button class="calc-key key-equals" data-action="calculate" id="btn-equals" title="Calcular Resultado (Enter)">=</button>
+            </div>
+
+          </div>
+
+          <!-- Keyboard Shortcuts Tip -->
+          <div class="calc-footer-hints">
+            <span><i class="fa-regular fa-keyboard"></i> Dica: Suporta teclado numérico, Enter, Backspace, parenteses e operadores.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: Calculation History & Memory Drawer -->
+      <aside class="side-column side-history">
+        <section class="glam-card history-card" id="history-section">
+          <div class="card-glass-shine"></div>
+
+          <div class="history-card-header">
+            <div class="history-title-badge">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+              <span>Histórico Glam</span>
+            </div>
+            <button id="btn-clear-history" class="icon-text-btn" title="Limpar histórico">
+              <i class="fa-regular fa-trash-can"></i> Limpar
+            </button>
+          </div>
+
+          <div class="history-list-wrap" id="history-list" tabindex="0">
+            <!-- Dynamic entries inserted by JavaScript -->
+            <div class="history-empty" id="history-empty-placeholder">
+              <span class="empty-icon">🌸</span>
+              <p>Nenhum cálculo recente ainda.</p>
+              <small>Calcule algo glamouroso com o Eli!</small>
+            </div>
+          </div>
+
+          <!-- Memory Status Box -->
+          <div class="memory-status-box">
+            <div class="mem-status-header">
+              <span><i class="fa-solid fa-database"></i> Memória Ativa (M):</span>
+              <span id="memory-current-val" class="mem-val">0</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p>Desenvolvido com todo o amor & glamour para <strong>Eli 🌸</strong> | Featuring <strong>Ariana Grande</strong> 💖</p>
+        <p class="footer-sub">Precisão Matemática Científica • Alta Estética Queermática • 2026</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="clock.js"></script>
+  <script src="calculator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
